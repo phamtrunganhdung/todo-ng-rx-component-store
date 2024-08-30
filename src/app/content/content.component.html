@@ -1,0 +1,11 @@
+<div
+  *ngIf="vm$ | async as vm"
+  class="flex justify-center flex-col items-center"
+>
+  <app-spinner></app-spinner>
+  <div class="flex flex-col justify-start items-start w-full mt-2">
+    <div *ngFor="let item of vm.todos" class="w-full">
+      <app-content-item [item]="item"></app-content-item>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<h1 class="text-5xl text-center font-semibold text-indigo-500 mb-2">
+  Todo List
+</h1>
+<hr />
+<div class="flex gap-3 mt-2" *ngIf="vm$ | async as vm">
+  <button
+    class="bg-green-600 px-3 text-white min-w-32"
+    (click)="toggleAll(vm.isCompletedAll !== 0)"
+    *ngIf="(todos$ | async)?.length"
+  >
+    {{ vm.isCompletedAll ? "Complete All" : "Active All" }}
+  </button>
+  <input
+    type="text"
+    class="flex-1 px-3 w-full border focus-visible:border-green-500 focus-visible:border focus-visible:outline-none"
+    [(ngModel)]="text"
+    (keyup.enter)="addTodo()"
+  />
+  <button class="bg-indigo-500 px-6 text-white">Add</button>
+</div>

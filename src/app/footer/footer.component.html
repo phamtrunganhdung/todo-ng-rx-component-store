@@ -1,0 +1,27 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <div class="flex justify-between pt-2" *ngIf="(todos$ | async)?.length">
+    <div class="border border-transparent">{{ vm.numActive }} item left</div>
+    <div class="space-x-3 flex">
+      <div *ngFor="let status of lstStatus">
+        <button
+          (click)="setFilter(status)"
+          class="px-1 border"
+          [ngClass]="
+            status === vm.filter ? 'border-indigo-500' : 'border-transparent'
+          "
+        >
+          {{ filterTex(status) }}
+        </button>
+      </div>
+    </div>
+    <div class="w-max min-w-32 border border-transparent">
+      <button
+        *ngIf="vm.todos.length - vm.numActive !== 0"
+        (click)="clear()"
+        class="hover:text-indigo-500"
+      >
+        Clear Completed
+      </button>
+    </div>
+  </div>
+</ng-container>

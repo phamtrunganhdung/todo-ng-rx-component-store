@@ -1,0 +1,18 @@
+<div class="flex gap-2 group w-full justify-between" *ngIf="item">
+  <div class="flex gap-2">
+    <input
+      type="checkbox"
+      [checked]="item.completed"
+      (click)="toggle(item.id)"
+    />
+    <div [ngClass]="{ 'line-through': item.completed }">
+      {{ item.text }}
+    </div>
+  </div>
+  <button
+    class="bg-rose-600 px-3 text-white hidden group-hover:block"
+    (click)="removeTodo(item.id)"
+  >
+    Remove
+  </button>
+</div>
