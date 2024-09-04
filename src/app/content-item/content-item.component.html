@@ -1,18 +1,30 @@
-<div class="flex gap-2 group w-full justify-between" *ngIf="item">
+<div
+  class="flex gap-2 group w-full justify-between"
+  *ngIf="item && idEditTodo !== item.id"
+  (dblclick)="handleEditTodo(item.id)"
+>
   <div class="flex gap-2">
     <input
       type="checkbox"
       [checked]="item.completed"
       (click)="toggle(item.id)"
     />
-    <div [ngClass]="{ 'line-through': item.completed }">
+    <div class="select-none" [ngClass]="{ 'line-through': item.completed }">
       {{ item.text }}
     </div>
   </div>
   <button
-    class="bg-rose-600 px-3 text-white hidden group-hover:block"
-    (click)="removeTodo(item.id)"
+    class="bg-rose-600 px-3 text-white hidden group-hover:block select-none"
+    (click)="removeTodo()"
   >
     Remove
   </button>
 </div>
+<input
+  *ngIf="idEditTodo === item.id"
+  #editTodo
+  [id]="item.id"
+  type="text"
+  class="border border-gray-200 focus-visible:border-green-700 focus-visible:outline-none px-2"
+  (keydown.enter)="handleEditStatus(editTodo.value)"
+/>

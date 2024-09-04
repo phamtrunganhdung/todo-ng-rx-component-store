@@ -72,10 +72,9 @@ export class TodosStore extends ImmerComponentStore<TodosState> {
             text: 'Eat breakfast',
             completed: false,
           },
-
           {
             id: uuidv4(),
-            text: 'Eat breakfast',
+            text: 'Play soccer',
             completed: false,
           },
           {
@@ -132,6 +131,12 @@ export class TodosStore extends ImmerComponentStore<TodosState> {
     const index = state.todos.findIndex((x) => x.id === id);
     if (index >= 0) {
       state.todos[index].completed = !state.todos[index].completed;
+    }
+  });
+  readonly editTodo = this.updater((state, todo: Todo) => {
+    const index = state.todos.findIndex((x) => x.id === todo.id);
+    if (index >= 0) {
+      state.todos[index].text = todo.text;
     }
   });
 
