@@ -25,8 +25,8 @@ export class ContentItemComponent {
     ElementRef<HTMLButtonElement>
   >;
   idEditTodo!: string;
-  toggle(id: string) {
-    this.todosStore.toggle(id);
+  toggle() {
+    this.todosStore.toggle(this.item.id);
   }
   constructor(private renderer: Renderer2) {
     this.renderer.listen('window', 'click', (e: Event) => {
@@ -42,11 +42,11 @@ export class ContentItemComponent {
   removeTodo() {
     this.todosStore.removeTodo(this.item.id);
   }
-  handleEditTodo(id: string) {
-    this.idEditTodo = id;
+  handleEditTodo() {
+    this.idEditTodo = this.item.id;
     setTimeout(() => {
       const inputFocus = this.editInput.find(
-        (x) => x.nativeElement.id === id.toString()
+        (x) => x.nativeElement.id === this.idEditTodo
       );
 
       if (inputFocus) {
